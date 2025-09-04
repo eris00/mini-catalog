@@ -3,7 +3,7 @@ import Header from "../components/Header"
 
 const Layout = ({children}) => {
   return (
-    <div className="flex flex-col min-h-screen w-full">
+    <div className="flex flex-col gap-12 min-h-screen w-full">
       <div className="w-full">
         <Header />
       </div>
