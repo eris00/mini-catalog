@@ -1,0 +1,17 @@
+[
+  { "id": 1, "title": "Wireless Mouse", "price": 25.99, "image": "https://via.placeholder.com/150", "isFeatured": true },
+  { "id": 2, "title": "Mechanical Keyboard", "price": 89.99, "image": "https://via.placeholder.com/150", "isFeatured": false },
+  { "id": 3, "title": "HD Monitor", "price": 199.99, "image": "https://via.placeholder.com/150", "isFeatured": true },
+  { "id": 4, "title": "USB-C Hub", "price": 45.50, "image": "https://via.placeholder.com/150", "isFeatured": false },
+  { "id": 5, "title": "External SSD 1TB", "price": 129.99, "image": "https://via.placeholder.com/150", "isFeatured": true },
+  { "id": 6, "title": "Gaming Chair", "price": 259.00, "image": "https://via.placeholder.com/150", "isFeatured": false },
+  { "id": 7, "title": "Bluetooth Headphones", "price": 75.20, "image": "https://via.placeholder.com/150", "isFeatured": false },
+  { "id": 8, "title": "Smartphone Stand", "price": 15.00, "image": "https://via.placeholder.com/150", "isFeatured": false },
+  { "id": 9, "title": "4K Webcam", "price": 95.75, "image": "https://via.placeholder.com/150", "isFeatured": true },
+  { "id": 10, "title": "Laptop Cooling Pad", "price": 35.40, "image": "https://via.placeholder.com/150", "isFeatured": false },
+  { "id": 11, "title": "Portable Projector", "price": 220.00, "image": "https://via.placeholder.com/150", "isFeatured": true },
+  { "id": 12, "title": "Wireless Charger", "price": 29.90, "image": "https://via.placeholder.com/150", "isFeatured": false },
+  { "id": 13, "title": "Fitness Smartwatch", "price": 145.00, "image": "https://via.placeholder.com/150", "isFeatured": true },
+  { "id": 14, "title": "Noise Cancelling Earbuds", "price": 110.00, "image": "https://via.placeholder.com/150", "isFeatured": false },
+  { "id": 15, "title": "Action Camera 4K", "price": 180.50, "image": "https://via.placeholder.com/150", "isFeatured": true }
+]
