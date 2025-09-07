@@ -2,9 +2,6 @@ import Card from "./Card"
 import { Plus } from 'lucide-react';
 
 const ProductCard = ({id, title, price, image, isFeatured, onAdd, onDetails}) => {  
-  
-  console.log(isFeatured);
-  
 
   return (
     <Card>

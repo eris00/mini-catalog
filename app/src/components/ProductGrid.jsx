@@ -1,10 +1,22 @@
+
 import ProductCard from "./ProductCard";
 import { useNavigate } from "react-router-dom";
+import Toolbar from "./Toolbar";
+import { useMemo, useState } from "react";
 
 const ProductGrid = ({products}) => {
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+ 
+  const productOptions = [
+    {value:"price-desc", label: "Price: High to Low"},
+    {value:"price-asc", label: "Price: Low to High"},
+    {value:"rating-desc", label: "Rating: High to Low"},
+  ]
 
+  const [searchQuery, setSearchQuery] = useState("");
+  const [onlyFeatured, setIsOnlyFeatured] = useState(false);
+  const [selectedOption, setSelectedOption] = useState(productOptions[0]);
 
   const onAdd = () => {
     console.log("onAdd");
@@ -12,32 +24,53 @@ const ProductGrid = ({products}) => {
 
   const onDetails = (productId) => {
     navigate(`/product-detail/${productId}`)
-    
-  }  
-
-  console.log(products);
+  }    
   
+  const filteredProducts = products.filter(product => product.title.toLowerCase().includes(searchQuery.toLocaleLowerCase()));
+
+  const sortedProducts = useMemo(() => {
+    if (selectedOption.value === "price-desc") {
+      return [...filteredProducts].sort((a, b) => b.price - a.price);
+    } else if (selectedOption.value === "price-asc") {
+      return [...filteredProducts].sort((a, b) => a.price - b.price);
+    } else if (selectedOption.value === "rating-desc") {
+      return [...filteredProducts].sort((a, b) => b.rating.rate - a.rating.rate);
+    } else {
+      return filteredProducts;
+    }
+  }, [filteredProducts, selectedOption]);
+
+  const selectedProducts = onlyFeatured ? sortedProducts.filter(product => product.isFeatured) : sortedProducts;
 
   return (
-    <div className="flex justify-center items-center w-full">
+    <div className="flex flex-col justify-center items-center w-full">
+      <Toolbar 
+        handleSearch={(e) => { setSearchQuery(e.target.value)} }
+        handleCheck={(e) => { setIsOnlyFeatured(e.target.checked); }}
+        selectedOption={selectedOption} setSelectedOption={setSelectedOption}
+        productOptions={productOptions} 
+      />
       <div className="flex w-2/3">
         <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {
-            products && products.map(product => {
+          { selectedProducts.length === 0 ? (
+            <p>Nema sadržaja</p>
+          ) : (
+            selectedProducts.map(product => {
               return (
                 <ProductCard 
-                key={product.id}
-                id={product.id}
-                title={product.title}
-                price={product.price}
-                image={product.image}
-                isFeatured={product.isFeatured}
-                onAdd={onAdd}
-                onDetails={onDetails}
+                  key={product.id}
+                  id={product.id}
+                  title={product.title}
+                  price={product.price}
+                  image={product.image}
+                  isFeatured={product.isFeatured}
+                  onAdd={onAdd}
+                  onDetails={onDetails}
               />
               )
             })
-          }
+          )}
+            
       </section>
       </div>
 
