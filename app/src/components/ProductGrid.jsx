@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Toolbar from "./Toolbar";
 import { useMemo, useState } from "react";
 
-const ProductGrid = ({products}) => {
+const ProductGrid = ({products, onAdd }) => {
 
   const navigate = useNavigate();
  
@@ -17,10 +17,6 @@ const ProductGrid = ({products}) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [onlyFeatured, setIsOnlyFeatured] = useState(false);
   const [selectedOption, setSelectedOption] = useState(productOptions[0]);
-
-  const onAdd = () => {
-    console.log("onAdd");
-  }
 
   const onDetails = (productId) => {
     navigate(`/product-detail/${productId}`)
@@ -51,27 +47,30 @@ const ProductGrid = ({products}) => {
         productOptions={productOptions} 
       />
       <div className="flex w-2/3">
-        <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           { selectedProducts.length === 0 ? (
-            <p>Nema sadržaja</p>
+            <p className="w-full text-center mt-16 text-xl">No content</p>
           ) : (
-            selectedProducts.map(product => {
-              return (
-                <ProductCard 
-                  key={product.id}
-                  id={product.id}
-                  title={product.title}
-                  price={product.price}
-                  image={product.image}
-                  isFeatured={product.isFeatured}
-                  onAdd={onAdd}
-                  onDetails={onDetails}
-              />
-              )
-            })
+            <>
+              <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                {selectedProducts.map(product => {
+                  return (
+                    <ProductCard 
+                      key={product.id}
+                      id={product.id}
+                      title={product.title}
+                      price={product.price}
+                      image={product.image}
+                      isFeatured={product.isFeatured}
+                      onAdd={() => onAdd(product)}
+                      onDetails={onDetails}
+                  />
+                  )
+                })}
+              </section>
+            </> 
           )}
             
-      </section>
+
       </div>
 
     </div>

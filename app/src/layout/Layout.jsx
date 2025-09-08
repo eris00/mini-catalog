@@ -1,20 +1,18 @@
 import Footer from "../components/Footer"
-import Header from "../components/Header"
 
-const Layout = ({children}) => {
+const Layout = ({ children, cartSidebar, header }) => {
   return (
-    <div className="flex flex-col gap-12 min-h-screen w-full">
-      <div className="w-full">
-        <Header />
-      </div>
-      <main className="flex-1 w-full">
-        {children}
-      </main>
-      <div className="w-full">
-        <Footer />
-      </div>
-    </div>
-  )
-}
+    <div className="flex flex-col min-h-screen w-full">
+      {header}
 
-export default Layout
+      <div className="flex flex-1 w-full">
+        <main className="flex-1 p-4">{children}</main>
+        {cartSidebar}
+      </div>
+
+      <Footer />
+    </div>
+  );
+};
+
+export default Layout;

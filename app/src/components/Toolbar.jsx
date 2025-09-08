@@ -6,7 +6,7 @@ const Toolbar = ({handleSearch, handleCheck, selectedOption, setSelectedOption, 
 
 
   return (
-    <div className='flex flex-row justify-end items-center gap-15 w-[65vw] mb-5'>
+    <div className='flex flex-row justify-end items-center gap-15 w-[65vw] mb-8'>
       <div className="relative w-60 max-w-sm">
         <span className="absolute inset-y-0 left-0 flex items-center pl-2">
           <Search className="text-gray-400 w-5 h-5" />

@@ -1,7 +1,9 @@
 import api from "../api";
 
 export const getAllProducts = async () => {
+  
   try {
+
     const response = await api.get("/products");
     const productsWithAdditionalProp = response.data.map(properties => ({
         ...properties,

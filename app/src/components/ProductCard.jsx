@@ -5,11 +5,11 @@ const ProductCard = ({id, title, price, image, isFeatured, onAdd, onDetails}) =>
 
   return (
     <Card>
-      <article className="flex flex-col justify-between h-full border rounded-lg shadow-md p-0 bg-white">
-        <div>
+      <Card.Header>
+        <div className="relative">
           {isFeatured && (
-            <span className="text-xs font-medium text-white bg-blue-500 px-2 py-1 rounded">
-              Recommended
+            <span className=" absolute top-2 left-2 text-xs font-medium text-white bg-blue-500 px-2 py-1 rounded">
+              Featured
             </span>
           )}
           <img 
@@ -18,12 +18,16 @@ const ProductCard = ({id, title, price, image, isFeatured, onAdd, onDetails}) =>
             className="w-full h-56 object-contain bg-gray-100 rounded-md"
           />
         </div>
+      </Card.Header>
+      <Card.Main>
         <div className="mt-3">
           <h3 className="text-black text-lg font-semibold truncate" title={title}>
             {title}
           </h3>
           <p className="text-gray-600 font-medium">{price} €</p>
         </div>
+      </Card.Main>
+      <Card.Footer>
         <div className="flex justify-between items-center mt-4">
           <button 
             onClick={onAdd} 
@@ -38,7 +42,7 @@ const ProductCard = ({id, title, price, image, isFeatured, onAdd, onDetails}) =>
             See more
           </button>
         </div>
-      </article>
+      </Card.Footer>
     </Card>
   )
 }
