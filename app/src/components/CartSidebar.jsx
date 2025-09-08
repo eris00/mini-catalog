@@ -1,12 +1,8 @@
 import Button from "./Button";
 
-const CartSidebar = ({ cart, onRemove, onChangeQuantity, onCheckout, isProcessing }) => {
-  const items = cart.reduce((sum, item) => sum + item.quantity, 0);
+const CartSidebar = ({ cart, onRemove, onChangeQuantity, onCheckout, isProcessing, items, total }) => {
   const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const discount = items >= 3 ? subtotal * 0.1 : 0;
-  const total = subtotal - discount;
-
-
 
   console.log(cart);
   
@@ -45,7 +41,6 @@ const CartSidebar = ({ cart, onRemove, onChangeQuantity, onCheckout, isProcessin
         )}
       </div>
 
-      {/* summary */}
       {cart.length > 0 && (
         <div className="border-t pt-4 space-y-1 text-sm mb-4 text-black">
           <div className="flex justify-between">
@@ -69,7 +64,6 @@ const CartSidebar = ({ cart, onRemove, onChangeQuantity, onCheckout, isProcessin
 
       <Button
         onClick={onCheckout}
-        // ref={}
         disabled={cart.length === 0 || isProcessing}
         className="mt-auto w-full"
         variant="primary"

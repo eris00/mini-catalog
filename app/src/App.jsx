@@ -15,6 +15,11 @@ function App() {
   const [cart, setCart] = useState([]);
   const [isProcessing, setIsProcessing] = useState(false);
 
+  
+  const items = cart.reduce((sum, item) => sum + item.quantity, 0);
+  const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+
   // fetch datas
   useEffect(() => {
     getAllProducts().then(data => {      
@@ -58,9 +63,6 @@ function App() {
     }, 2000);
   };
 
-  const items = cart.reduce((sum, item) => sum + item.quantity, 0);
-  const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-
   return (
     <>
       <Layout
@@ -68,6 +70,8 @@ function App() {
         cartSidebar={
           <CartSidebar
             cart={cart}
+            items={items}
+            total={total}
             onRemove={handleRemoveFromCart}
             onChangeQuantity={handleChangeQuantity}
             onCheckout={handleCheckout}
